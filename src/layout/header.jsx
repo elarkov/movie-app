@@ -11,9 +11,7 @@ const Header = () => {
       <div className="collapse navbar-collapse" id="navbarColor01">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#">Главная
-              <span className="sr-only">(current)</span>
-            </a>
+            <a className="nav-link" href="#">Главная</a>
           </li>
         </ul>
       </div>
