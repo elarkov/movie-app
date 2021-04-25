@@ -5,50 +5,46 @@ import { Search } from '../components/search/search.jsx';
 import { getMovies, searchMovie } from '../api/server.js';
 
 class Main extends React.Component {
-
   state = {
-    movies: []
-  }
+    movies: [],
+  };
 
   getMoviesList = () => {
-    getMovies()
-      .then((data) => {
-        this.setState({
-          movies: data.Search
-        })
-      })
-  }
+    getMovies().then((data) => {
+      this.setState({
+        movies: data.Search,
+      });
+    });
+  };
 
-  findMovie = (str) => {
-    searchMovie(str)
-      .then((data) => {
-        this.setState({
-          movies: data.Search
-        })
-      })
-  }
+  findMovie = (str, type) => {
+    searchMovie(str, type).then((data) => {
+      this.setState({
+        movies: data.Search,
+      });
+    });
+  };
 
   componentDidMount() {
     this.getMoviesList();
   }
 
   render() {
-
     const { movies } = this.state;
 
     return (
-      <main className="content">
-        <div className="container">
-          <Search searchMovie={this.findMovie}/>
-          {
-            movies.length ? (
-              <MoviesList movies={movies} />
-            ) : <h3>Загрузка...</h3>
-          }
+      <main className='content'>
+        <div className='container'>
+          <Search searchMovie={this.findMovie} />
+          {movies.length ? (
+            <MoviesList movies={movies} />
+          ) : (
+            <h3>Загрузка...</h3>
+          )}
         </div>
       </main>
-    )
+    );
   }
-};
+}
 
 export { Main };

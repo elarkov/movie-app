@@ -28,3 +28,11 @@
   background: #e12e1c;
   color: #fff;
 }
+
+.form-group {
+  display: flex;
+}
+
+.form-check {
+  margin-right: 20px;
+}
