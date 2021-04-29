@@ -3,11 +3,13 @@ import { MovieItem } from '../movie-item/movie-item.jsx';
 
 const MoviesList = (props) => {
 
-  const { movies } = props;
+  const { movies = [] } = props;
 
   return (
     <div className="movies">
-      {movies.map((movie) => <MovieItem key={movie.imdbID} {...movie} />)}
+      {movies.length ? movies.map((movie) => (<MovieItem key={movie.imdbID} {...movie} />))
+      : <h4>Ничего не найдено</h4>
+    }
     </div>
   )
 };

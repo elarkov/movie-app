@@ -7,13 +7,15 @@ import { getMovies, searchMovie } from '../api/server.js';
 class Main extends React.Component {
   state = {
     movies: [],
+    loading: true
   };
 
   getMoviesList = () => {
     getMovies().then((data) => {
       this.setState({
         movies: data.Search,
-      });
+        loading: false
+      })
     });
   };
 
@@ -21,25 +23,26 @@ class Main extends React.Component {
     searchMovie(str, type).then((data) => {
       this.setState({
         movies: data.Search,
+        loading: false
       });
     });
-  };
+  }
 
   componentDidMount() {
     this.getMoviesList();
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies, loading } = this.state;
 
     return (
       <main className='content'>
         <div className='container'>
           <Search searchMovie={this.findMovie} />
-          {movies.length ? (
-            <MoviesList movies={movies} />
-          ) : (
+          {loading ? (
             <h3>Загрузка...</h3>
+          ) : (
+            <MoviesList movies={movies} />
           )}
         </div>
       </main>

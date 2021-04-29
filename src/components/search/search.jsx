@@ -18,9 +18,10 @@ class Search extends React.Component {
   };
 
   handleFilter = (evt) => {
-    this.setState(() => ({
-      type: evt.target.dataset.type
-    }), () => {
+    this.setState(
+      () => ({
+        type: evt.target.dataset.type
+      }), () => {
       this.props.searchMovie(this.state.search, this.state.type);
     })
     
@@ -67,8 +68,9 @@ class Search extends React.Component {
                 id="optionsRadios2"
                 value="option2"
                 data-type="movie"
-                onChange={this.handleFilter}
                 checked={this.state.type === 'movie'}
+                onChange={this.handleFilter}
+                
               />
             Фильмы
           </label>
