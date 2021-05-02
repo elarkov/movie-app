@@ -1,4 +1,3 @@
-//import { API_KEY } from '../layout/main.jsx';
 import { API_KEY } from '../../api_key.js';
 
 const getMovies = async () => {
