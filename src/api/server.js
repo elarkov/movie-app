@@ -1,4 +1,5 @@
-const API_KEY = process.env.REACT_APP_API_KEY;
+//import { API_KEY } from '../layout/main.jsx';
+import { API_KEY } from '../../api_key.js';
 
 const getMovies = async () => {
   const response = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`);
@@ -6,10 +7,10 @@ const getMovies = async () => {
   return res;
 };
 
-const searchMovie = async (str, type='all') => {
+const searchMovie = async (str, type = 'all') => {
   const response = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== 'all' ? `&type=${type}` : ''}`);
   const res = await response.json();
   return res;
-}
+};
 
 export { getMovies, searchMovie };

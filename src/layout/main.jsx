@@ -4,6 +4,8 @@ import { MoviesList } from '../components/movies-list/movies-list.jsx';
 import { Search } from '../components/search/search.jsx';
 import { getMovies, searchMovie } from '../api/server.js';
 
+
+
 class Main extends React.Component {
   state = {
     movies: [],
