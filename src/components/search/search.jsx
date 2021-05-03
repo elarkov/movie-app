@@ -24,7 +24,7 @@ const Search = (props) => {
   const handleFilter = (evt) => {
     setType(evt.target.dataset.type);
     searchMovie(search, evt.target.dataset.type);
-  }
+  };
 
     return (
       <>

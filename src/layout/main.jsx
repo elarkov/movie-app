@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import { MoviesList } from '../components/movies-list/movies-list.jsx';
 import { Search } from '../components/search/search.jsx';
@@ -6,41 +6,32 @@ import { getMovies, searchMovie } from '../api/server.js';
 
 
 
-class Main extends React.Component {
-  state = {
-    movies: [],
-    loading: true
-  };
+const Main = () => {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  getMoviesList = () => {
+  const getMoviesList = () => {
     getMovies().then((data) => {
-      this.setState({
-        movies: data.Search,
-        loading: false
-      })
+      setMovies(data.Search);
+      setLoading(false);
     });
   };
 
-  findMovie = (str, type) => {
+  const findMovie = (str, type) => {
     searchMovie(str, type).then((data) => {
-      this.setState({
-        movies: data.Search,
-        loading: false
-      });
+      setMovies(data.Search);
+      setLoading(false);
     });
-  }
+  };
 
-  componentDidMount() {
-    this.getMoviesList();
-  }
-
-  render() {
-    const { movies, loading } = this.state;
+  useEffect(() => {
+    getMoviesList()
+  }, [])
 
     return (
       <main className='content'>
         <div className='container'>
-          <Search searchMovie={this.findMovie} />
+          <Search searchMovie={findMovie} />
           {loading ? (
             <h3>Загрузка...</h3>
           ) : (
@@ -49,7 +40,6 @@ class Main extends React.Component {
         </div>
       </main>
     );
-  }
 }
 
 export { Main };
